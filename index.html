@@ -1,7 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
 <title>Window Seat</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -145,7 +141,7 @@ button.ic { width: 42px; height: 42px; padding: 0 !important; border-radius: 50%
 .tray .lbl { align-self: center; font-size: .78rem; color: var(--muted); }
 .shop { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
 .sticker { background: var(--paper); color: var(--paper-ink); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
-.sticker .em { font-size: 2rem; }
+.sticker .em { font-size: 2rem; } .sicon { width: 1em; height: 1em; display: block; } .sticker .em .sicon { width: 40px; height: 40px; }
 .sticker b { font-family: var(--f-display); font-weight: 600; font-size: 1.05rem; }
 .sticker p { margin: 0; font-size: .82rem; color: #6c6158; flex: 1; }
 .sticker button { margin-top: 6px; color: var(--paper-ink); background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.15); }
@@ -174,6 +170,14 @@ button.ic { width: 42px; height: 42px; padding: 0 !important; border-radius: 50%
 .bigdrop svg { width: 100%; height: 100%; overflow: visible; }
 .bigdrop .n { position: absolute; inset: 0; display: grid; place-items: center; padding-top: 16%; font: 600 clamp(3.2rem, 18vw, 5rem) var(--f-display); color: rgba(30,46,70,.7); text-shadow: 0 1px 0 rgba(255,255,255,.5); transform: scale(1.12, 1.16); }
 .lvlname { font: 700 1.6rem var(--f-hand); color: rgba(36,48,68,.85); text-shadow: 0 1px 0 rgba(255,255,255,.5); text-align: center; }
+.palette { display: flex; flex-direction: column; align-items: center; gap: 7px; margin-top: 10px; max-width: 300px; }
+.palette .pallbl { font: 700 .78rem var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.45); }
+.palette .swatches { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+.palette .swatches button { width: 30px; height: 30px; border-radius: 50%; padding: 0; border: 2px solid rgba(255,255,255,.55); box-shadow: inset 0 -4px 6px rgba(0,0,0,.18), inset 0 3px 4px rgba(255,255,255,.45), 0 2px 5px rgba(0,0,0,.25); cursor: pointer; }
+.palette .swatches button[aria-pressed="true"] { border-color: #fff; outline: 2.5px solid #fff; outline-offset: 2px; }
+.palette .palhint { font: 500 .8rem var(--f-body); color: rgba(255,255,255,.88); text-align: center; text-shadow: 0 1px 4px rgba(0,0,0,.45); }
+.newcol { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.newcol i { width: 22px; height: 22px; border-radius: 50%; flex: none; box-shadow: inset 0 -3px 5px rgba(0,0,0,.2), 0 1px 3px rgba(0,0,0,.3); }
 .lvltag { font: 700 .78rem var(--f-body); letter-spacing: .06em; text-transform: uppercase; padding: 3px 12px; border-radius: 999px; color: #fff; background: rgba(60,80,110,.55); min-height: 1.4em; }
 .lvltag[data-d="easy"] { background: #3f9a63; } .lvltag[data-d="tricky"] { background: #c98a1e; } .lvltag[data-d="hard"] { background: #c4513f; } .lvltag[data-d="super-hard"] { background: #7a3fa8; }
 
@@ -200,7 +204,7 @@ button.ic { width: 42px; height: 42px; padding: 0 !important; border-radius: 50%
     <div class="home" id="home"></div>
     <header class="top">
       <div class="tl"><button class="ic" id="homeBtn" type="button" aria-label="Home" hidden>‹</button><div><h1>Window Seat</h1><div class="where" id="where"></div></div></div>
-      <div class="tools"><button class="ic" id="soundBtn" type="button" aria-pressed="true" hidden>🔊</button><button class="ic" id="settingsBtn" type="button" aria-label="Settings">⚙</button></div>
+      <div class="tools"><button class="ic" id="soundBtn" type="button" aria-pressed="true" hidden>Sound</button><button class="ic" id="settingsBtn" type="button" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
     </header>
     <div class="tray" id="tray"></div>
     <div class="sill">
@@ -208,7 +212,7 @@ button.ic { width: 42px; height: 42px; padding: 0 !important; border-radius: 50%
         <p class="hint" id="hint"></p>
         <div class="strokes" id="strokesBox" role="status"><span id="strokeLabel">Strokes</span><div class="pips" id="pips"></div></div>
       </div>
-      <div class="controls" id="controlsRow"><button id="undoBtn" type="button" hidden>Undo stroke</button><button class="primary" id="goBtn" type="button" hidden>Start race</button><button id="againBtn" type="button" hidden>Restart race</button><button class="primary" id="breatheBtn" type="button" hidden><span aria-hidden="true">💨</span> Breathe on it</button></div>
+      <div class="controls" id="controlsRow"><button id="undoBtn" type="button" hidden>Undo stroke</button><button class="primary" id="goBtn" type="button" hidden>Start race</button><button id="againBtn" type="button" hidden>Restart race</button><button class="primary" id="breatheBtn" type="button" hidden>Breathe on it</button></div>
     </div>
     <div class="overlay" id="overlay" hidden></div>
     <section class="map" id="levels" hidden aria-label="Puzzles">
@@ -550,11 +554,20 @@ const HABITS = {
   Mo: { tag: 'slippy', desc: 'fast on clean glass, gets stuck on dusty spots', mass: 1.2, thirst: 1, sense: 9, wind: 1, stick: .8, dustK: 3, speed: 1.18 }
 };
 // Stickers are traded for wins, then stuck on the glass. Each one bends a rule near it.
+// sticker icons drawn as shapes (no emoji): each is a list of [svg path, fill] in a 24 box
+const circ = (cx, cy, r) => `M${cx - r} ${cy}a${r} ${r} 0 1 0 ${2 * r} 0a${r} ${r} 0 1 0 ${-2 * r} 0z`;
+const ICONS = {
+  star: [['M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z', '#f5b82e']],
+  flower: [[[0, 1, 2, 3, 4].map(k => circ(+(12 + 4.8 * Math.cos(k * 1.2566 - 1.5708)).toFixed(2), +(12 + 4.8 * Math.sin(k * 1.2566 - 1.5708)).toFixed(2), 3.9)).join(''), '#f19ab8'], [circ(12, 12, 2.8), '#f7d14c']],
+  heart: [['M12 20.5s-7.4-4.5-9.4-9C1.2 8.3 3.2 5 6.5 5c2 0 3.5 1.1 4.5 2.6C12 6.1 13.5 5 15.5 5c3.3 0 5.3 3.3 3.9 6.5-2 4.5-7.4 9-7.4 9z', '#e8578a']],
+  cloud: [['M7.2 18.5h10.3a4.1 4.1 0 0 0 .7-8.1 6 6 0 0 0-11.5-.9 4.5 4.5 0 0 0 .5 9z', '#a9bfdc']]
+};
+function stickerSVG(k) { return `<svg class="sicon" viewBox="0 0 24 24" aria-hidden="true">${ICONS[k].map(([d, f]) => `<path d="${d}" fill="${f}"/>`).join('')}</svg>`; }
 const STICKERS = {
-  star: { e: '⭐', name: 'Slippy star', desc: 'Drops that slide over it zoom ahead and never stick.' },
-  flower: { e: '🌸', name: 'Sticky flower', desc: 'Drops that touch it get stuck for a moment. Put it in a rival\'s way.' },
-  heart: { e: '💗', name: 'Magnet heart', desc: 'Pulls nearby drops towards it.' },
-  cloud: { e: '☁️', name: 'Rain cloud', desc: 'Drops a ring of droplets around itself when the race starts.' }
+  star: { e: stickerSVG('star'), name: 'Slippy star', desc: 'Drops that slide over it zoom ahead and never stick.' },
+  flower: { e: stickerSVG('flower'), name: 'Sticky flower', desc: 'Drops that touch it get stuck for a moment. Put it in a rival\'s way.' },
+  heart: { e: stickerSVG('heart'), name: 'Magnet heart', desc: 'Pulls nearby drops towards it.' },
+  cloud: { e: stickerSVG('cloud'), name: 'Rain cloud', desc: 'Drops a ring of droplets around itself when the race starts.' }
 };
 const PCOL = ['244,184,96', '94,224,208'], PINK = ['#2b1d0e', '#08302b'];
 /* ---------- single-player puzzles: guide Pip into the glowing drain at the bottom ----------
@@ -687,15 +700,15 @@ async function makeLevel(n, bg) {
 }
 // the first time a puzzle brings in something new, a card explains it before you plan
 const INTROS = {
-  0: ['💧', 'Steer Pip', 'Drag your finger to wipe paths in the fog. Pip slides along wet glass, so lead it into the glowing drain at the bottom. Grab the gold stars on the way, then press Let it go.'],
-  1: ['🫧', 'Parked drops', 'Big drops sit still on the glass. If Pip touches a drop bigger than itself, Pip gets swallowed. Steer around them.'],
-  2: ['🌬️', 'Wind', 'Wind pushes Pip sideways as it slides. A wet path holds Pip steady against it.'],
-  3: ['⚠️', 'Bumps', 'When the car hits a bump, the window shakes. Every drop jumps up and new drops fall from the top. Small clear ones are snacks: Pip grows twice as much eating them. Heavy ones chase wet paths and swallow anything smaller, so wipe a path to aim them at a drop in your way.'],
-  4: ['🍬', 'Eat to grow', 'Little droplets make Pip bigger when it rolls over them. A bigger Pip can swallow drops that used to be too big.'],
-  5: ['🚇', 'Tunnels and dust', 'In a tunnel the window goes dark, and a hidden star lights up. You can only grab it while you are in the dark. Dusty patches are sticky and slow drops down.'],
-  6: ['🌉', 'Bridges', 'On a bridge, strong gusts swing back and forth. Keep Pip on a wet path to ride them out.'],
-  8: ['👑', 'King Drip', 'King Drip is a huge drop who slides toward Pip. He loves wet glass, so wipe a decoy path to lure him away.'],
-  9: ['❄️', 'Frost', 'Icy patches grab drops and slow them down, and you only get 2 strokes. Plan carefully.']
+  0: ['Steer Pip', 'Drag your finger to wipe paths in the fog. Pip slides along wet glass, so lead it into the glowing drain at the bottom. Grab the gold stars on the way, then press Let it go.'],
+  1: ['Parked drops', 'Big drops sit still on the glass. If Pip touches a drop bigger than itself, Pip gets swallowed. Steer around them.'],
+  2: ['Wind', 'Wind pushes Pip sideways as it slides. A wet path holds Pip steady against it.'],
+  3: ['Bumps', 'When the car hits a bump, the window shakes. Every drop jumps up and new drops fall from the top. Small clear ones are snacks: Pip grows twice as much eating them. Heavy ones chase wet paths and swallow anything smaller, so wipe a path to aim them at a drop in your way.'],
+  4: ['Eat to grow', 'Little droplets make Pip bigger when it rolls over them. A bigger Pip can swallow drops that used to be too big.'],
+  5: ['Tunnels and dust', 'In a tunnel the window goes dark, and a hidden star lights up. You can only grab it while you are in the dark. Dusty patches are sticky and slow drops down.'],
+  6: ['Bridges', 'On a bridge, strong gusts swing back and forth. Keep Pip on a wet path to ride them out.'],
+  8: ['King Drip', 'King Drip is a huge drop who slides toward Pip. He loves wet glass, so wipe a decoy path to lure him away.'],
+  9: ['Frost', 'Icy patches grab drops and slow them down, and you only get 2 strokes. Plan carefully.']
 };
 const NEUTRAL = { tag: '', thirst: 1, sense: 9, wind: 1, stick: 1, dustK: 1, speed: 1 };
 // big drops shaken loose by a bump chase wet glass hard, so a wiped path can aim them at a blocker
@@ -788,6 +801,24 @@ const savePuz = () => store.set('ws-puzzle', JSON.stringify(puz));
 const levelsOpen = () => 1 + Object.keys(puz.best).reduce((m, k) => Math.max(m, +k + 1), 0);
 const saveInv = () => store.set('ws-stickers', JSON.stringify(inv));
 const radius = m => 4.5 + 4.6 * Math.sqrt(m);
+// Pip's palette: start with the three primaries, and every new colour Pip mixes from paint drops and carries into the drain is added
+const PRIMARIES = [{ c: { r: 1, y: 0, b: 0, w: 0 }, name: 'Red' }, { c: { r: 0, y: 1, b: 0, w: 0 }, name: 'Yellow' }, { c: { r: 0, y: 0, b: 1, w: 0 }, name: 'Blue' }];
+let palette = PRIMARIES.slice(), pipTint = 0, paints = [], paintsGot = 0;
+try { const p = JSON.parse(store.get('ws-palette') || 'null'); if (Array.isArray(p) && p.length) palette = p; } catch (e) {}
+pipTint = Math.min(palette.length - 1, Math.max(0, +(store.get('ws-pip') || 0) || 0));
+const savePalette = () => { store.set('ws-palette', JSON.stringify(palette)); store.set('ws-pip', String(pipTint)); };
+const normC = c => { const s = c.r + c.y + c.b + c.w || 1; return { r: c.r / s, y: c.y / s, b: c.b / s, w: c.w / s }; };
+const PAINT = { r: ['Red', 1], y: ['Yellow', 1], b: ['Blue', 1], w: ['White', 1.4] };
+function hueName(c) {
+  const [R, G, B] = mixRGB(c), mx = Math.max(R, G, B), mn = Math.min(R, G, B), l = (mx + mn) / 2, d = mx - mn;
+  if (d < .08) return l > .8 ? 'Cloud' : l > .5 ? 'Silver' : 'Slate';
+  let h = mx === R ? ((G - B) / d) % 6 : mx === G ? (B - R) / d + 2 : (R - G) / d + 4; h = (h * 60 + 360) % 360;
+  const names = [[12, 'Red'], [28, 'Coral'], [42, 'Orange'], [52, 'Amber'], [66, 'Yellow'], [95, 'Lime'], [168, 'Green'], [190, 'Teal'], [210, 'Sky'], [240, 'Blue'], [262, 'Indigo'], [290, 'Purple'], [318, 'Plum'], [345, 'Pink'], [360, 'Red']];
+  let n = names.find(([t]) => h < t)[1];
+  if (d < .3 && l < .55 && h < 60) n = 'Brown';
+  return (l > .78 ? 'Pale ' : l < .38 ? 'Deep ' : '') + n;
+}
+const sameColour = (a, b) => { const x = mixRGB(a), y = mixRGB(b); return Math.hypot(x[0] - y[0], x[1] - y[1], x[2] - y[2]) < .075; };
 const cellAt = (x, y) => { const cx = Math.floor(x / CELL), cy = Math.floor(y / CELL); return cx < 0 || cy < 0 || cx >= COLS || cy >= ROWS ? -1 : cy * COLS + cx; };
 const wetAt = (x, y) => { const i = cellAt(x, y); return i < 0 ? 0 : wet[i]; };
 const dustAt = (x, y) => { const i = cellAt(x, y); return i < 0 ? 0 : dust[i]; };
@@ -823,12 +854,21 @@ function loadLevel(n, quick) {
   wet.fill(0); dust.fill(0); clearPaths();
   for (const [x, y, r] of L.dust || []) paintDust(x, y, r);
   let id = 0;
-  const pip = makeDrop({ id: id++, name: 'Pip', h: HABITS.Pip, c: { r: 1.3, y: 0, b: 0, w: 0 }, mass: 1.3, x: L.start, y: START_Y });
+  const tint = (palette[pipTint] || palette[0]).c, pip = makeDrop({ id: id++, name: 'Pip', h: HABITS.Pip, c: { r: tint.r * 1.3, y: tint.y * 1.3, b: tint.b * 1.3, w: tint.w * 1.3 }, mass: 1.3, x: L.start, y: START_Y });
   drops = [pip];
   for (const [x, y, m] of L.parked || []) drops.push(makeDrop({ id: id++, h: NEUTRAL, mass: m, x, y, parked: true }));
   if (L.boss) drops.push(makeDrop({ id: id++, name: 'King Drip', h: BOSS, c: { r: L.boss[2] * .6, y: 0, b: L.boss[2] * .4, w: 0 }, mass: L.boss[2], x: L.boss[0], y: L.boss[1], boss: true }));
   dots = (L.dots || []).map(([x, y, m]) => ({ x, y, c: { r: 0, y: 0, b: 0, w: m }, mass: m, rgb: mixRGB(PIG.w) }));
   sparkles = (L.sparkles || []).map(([x, y, h]) => ({ x, y, got: false, dark: !!h }));
+  // paint drops: a few coloured beads in spots of their own; they only tint Pip, they never change its size or speed
+  { const R = rng(n * 313 + 17), keys = ['r', 'y', 'b', 'r', 'y', 'b', 'w'], want = 2 + (R() < .5 ? 1 : 0); paints = [];
+    for (let t = 0; t < 60 && paints.length < want; t++) {
+      const x = GX + 30 + R() * (GW - 60), y = START_Y + 70 + R() * (FIN - START_Y - 140), k = keys[Math.floor(R() * keys.length)];
+      if (sparkles.some(q => Math.hypot(q.x - x, q.y - y) < 34) || drops.some(d => Math.hypot(d.x - x, d.y - y) < radius(d.mass) + 26) || paints.some(q => Math.hypot(q.x - x, q.y - y) < 60)) continue;
+      if (paints.some(q => q.k === k)) continue;
+      paints.push({ x, y, k, got: false, rgb: mixRGB(PIG[k]) });
+    }
+    paintsGot = 0; }
   bumps = (L.bumps || []).map(b => Object.assign({ done: false }, b));
   players = [{ drop: pip, strokes: L.strokes, fix: 0, sticker: false }]; player = pip;
   turn = 0; phase = 'plan'; finishOrder = []; raceT = 0; ripples = []; outcome = null; history = []; usedPaths = 0; placed = []; armed = null; env = { tunnel: 0, bridge: 0 }; shake = 0;
@@ -855,6 +895,7 @@ function doBump(b) {
   }
 }
 function goHome() {
+  paints = [];
   phase = 'home'; drops = []; dots = []; players = []; player = null; placed = []; armed = null; wet.fill(0); clearPaths(); env = { tunnel: 0, bridge: 0 };
   if (!layers.sky) buildLayers(STOPS[stopIdx]);
   document.getElementById('overlay').hidden = true; document.getElementById('overlay').classList.remove('modal'); updateWhere(); updateUI();
@@ -944,7 +985,7 @@ $('sndToggle').onclick = () => { soundBtn.click(); paintSettings(); };
 $('vibeToggle').onclick = () => { vibeOn = !vibeOn; store.set('ws-vibe', vibeOn ? 'on' : 'off'); buzz(30); paintSettings(); };
 for (const id of ['levelsBtn', 'bookBtn', 'shopBtn', 'homeBtn2']) $(id).addEventListener('click', () => $('settings').hidden = true);
 $('homeBtn2').onclick = () => goHome();
-function paintSound() { soundBtn.textContent = soundOn ? '🔊' : '🔈'; soundBtn.setAttribute('aria-label', soundOn ? 'Sound on' : 'Sound off'); soundBtn.setAttribute('aria-pressed', String(soundOn)); }
+function paintSound() { soundBtn.textContent = soundOn ? 'On' : 'Off'; soundBtn.setAttribute('aria-label', soundOn ? 'Sound on' : 'Sound off'); soundBtn.setAttribute('aria-pressed', String(soundOn)); }
 soundBtn.onclick = () => { soundOn = !soundOn; store.set('ws-sound', soundOn ? 'on' : 'off'); ensureAudio(); if (rainGain) rainGain.gain.value = soundOn ? .06 : 0; paintSound(); };
 paintSound();
 
@@ -1132,6 +1173,11 @@ function step(dt) {
   for (let i = 0; i < wet.length; i++) wet[i] *= Math.exp(-dt * .06);
   fadePaths(dt, .06);
   if (mode === 'puzzle' && player.alive) for (const sp of sparkles) if (!sp.got && (!sp.dark || env.tunnel > .5) && Math.hypot(sp.x - player.x, sp.y - player.y) < radius(player.mass) + 7) { sp.got = true; plip(1200, .18, .08); buzz(15); updateWhere(); ripples.push({ x: sp.x, y: sp.y, t: 0, rgb: [1, .85, .35] }); }
+  if (mode === 'puzzle' && player.alive) for (const q of paints) if (!q.got && Math.hypot(q.x - player.x, q.y - player.y) < radius(player.mass) + 6) {
+    q.got = true; paintsGot++; const [nm, amt] = PAINT[q.k]; player.c[q.k] += amt; player.rgb = mixRGB(player.c);
+    plip(700 + paintsGot * 120, .18, .08); buzz(12); ripples.push({ x: q.x, y: q.y, t: 0, rgb: q.rgb });
+    pops.push({ x: player.x, y: player.y - 16, t: 0, text: `+${nm}: Pip is ${hueName(player.c)}` });
+  }
   if (phase === 'race' && mode === 'puzzle') {
     if (!player.alive) end('swallowed');
     else if (player.done) end(player.x >= cfg.goal[0] && player.x <= cfg.goal[1] ? 'goal' : 'missed');
@@ -1177,8 +1223,8 @@ function tip(kind) {
 }
 let seen = {}; try { seen = JSON.parse(store.get('ws-seen') || '{}'); } catch (e) {}
 function showIntro(n) {
-  const [ic, title, text] = INTROS[n], ov = $('overlay');
-  ov.innerHTML = `<div class="card intro" role="dialog" aria-label="${title}"><button class="x" id="introX" type="button" aria-label="Close">×</button><div class="ic" aria-hidden="true">${ic}</div><div class="eyebrow">New on this window</div><h2>${title}</h2><p>${text}</p><div class="row"><button class="primary" id="introOk" type="button">OK</button></div></div>`;
+  const [title, text] = INTROS[n], ov = $('overlay');
+  ov.innerHTML = `<div class="card intro" role="dialog" aria-label="${title}"><button class="x" id="introX" type="button" aria-label="Close">×</button><div class="eyebrow">New on this window</div><h2>${title}</h2><p>${text}</p><div class="row"><button class="primary" id="introOk" type="button">OK</button></div></div>`;
   ov.classList.add('modal'); ov.hidden = false;
   const close = () => { seen[n] = 1; store.set('ws-seen', JSON.stringify(seen)); ov.hidden = true; ov.classList.remove('modal'); };
   $('introX').onclick = close; $('introOk').onclick = close; $('introOk').focus();
@@ -1187,7 +1233,7 @@ function endPuzzle(kind) {
   buzz(kind === 'goal' ? [20, 40, 20, 40, 60] : 120);
   const L = LEVELS[levelIdx], ok = kind === 'goal', got = sparkles.filter(s => s.got).length;
   const stars = ok ? got : 0; lastStars = stars;
-  let earned = 0, card = null;
+  let earned = 0, card = null, newColour = null;
   if (ok) {
     const prev = puz.best[levelIdx] || 0; if (!(levelIdx in puz.best) || stars > prev) puz.best[levelIdx] = stars; savePuz();
     { const nx = levelsOpen() - 1; setTimeout(() => ensureLevel(nx, true), 1200); }
@@ -1195,6 +1241,7 @@ function endPuzzle(kind) {
     const second = levelIdx % 2 === 1, stop = L.stop;
     if (second && !medals[stop]) { medals[stop] = { won: true }; store.set('ws-medals', JSON.stringify(medals)); card = stop; earned++; }
     inv.credits += earned; saveInv();
+    if (paintsGot) { const c = normC(player.c); if (!palette.some(e => sameColour(e.c, c))) { newColour = { c, name: hueName(c) }; palette.push(newColour); pipTint = palette.length - 1; savePalette(); } }
   }
   const why = { swallowed: `${player.swallowedBy ? player.swallowedBy.name || 'A bigger drop' : 'A bigger drop'} swallowed Pip. Only a bigger drop can swallow a smaller one.`, missed: 'Pip reached the bottom but missed the drain. Steer it into the glowing gap.', timeout: 'Pip got stuck. Dusty patches grab drops, and wet glass helps them slip free.' }[kind];
   setTimeout(() => {
@@ -1203,6 +1250,7 @@ function endPuzzle(kind) {
     ov.innerHTML = ok ? `<div class="card"><div class="eyebrow">Level ${levelIdx + 1}</div><h2>Into the drain!</h2><div>${starRow}</div>
       <p>${stars === 3 ? 'Perfect: Pip collected every star on the way down!' : `Pip collected ${stars} of 3 stars. Wipe a path through all of them to get 3.`}</p>
       ${card !== null ? `<img alt="" src="${postcard(card)}"><p>New postcard: ${STOPS[card].name}!</p>` : ''}
+      ${newColour ? `<p class="newcol"><i style="background:${css(mixRGB(newColour.c))}"></i>New colour for Pip's palette: <b>${newColour.name}</b></p>` : ''}
       ${earned ? `<p><b>+${earned} sticker trade${earned > 1 ? 's' : ''}!</b></p>` : ''}
       <div class="row">${last ? '' : '<button class="primary" id="nextBtn" type="button">Next level</button>'}<button id="againBtn2" type="button">Retry</button><button id="lvlBtn2" type="button">Back</button></div></div>`
       : `<div class="card"><div class="eyebrow">Level ${levelIdx + 1}</div><h2>Oh no!</h2><p>${why}</p><div class="row"><button class="primary" id="againBtn2" type="button">Try again</button><button id="lvlBtn2" type="button">Back</button></div></div>`;
@@ -1264,7 +1312,7 @@ function openBook(pick) {
   const choose = v => { puzBg = v; store.set('ws-bg', v === null ? '' : String(v)); book.hidden = true; showBgMini(); if (v !== null) { buildLayers(STOPS[v]); stopIdx = v; } };
   if (pick) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'postcard auto' + (puzBg === null || !medals[puzBg] ? ' chosen' : '');
-    b.innerHTML = `<span class="autoimg">🗺️</span><span class="cap">Follow the trip</span><span class="num">Each level picks its own view</span>`;
+    b.innerHTML = `<span class="autoimg"></span><span class="cap">Follow the trip</span><span class="num">Each level picks its own view</span>`;
     b.onclick = () => choose(null); grid.appendChild(b);
   }
   STOPS.forEach((S, i) => {
@@ -1307,6 +1355,7 @@ async function openLevels() {
         <radialGradient id="wd-shadow" cx=".5" cy=".5" r=".5"><stop offset=".6" stop-color="#1c2a40" stop-opacity=".18"/><stop offset="1" stop-color="#1c2a40" stop-opacity="0"/></radialGradient>
         <filter id="wd-blur"><feGaussianBlur stdDeviation="1.2"/></filter></defs>
         <ellipse cx="54" cy="57" rx="45" ry="42" fill="url(#wd-shadow)"/>
+        <ellipse cx="50" cy="51" rx="43" ry="41" fill="#fff" fill-opacity=".3" id="dropTint"/>
         <ellipse cx="50" cy="51" rx="43" ry="41" fill="url(#wd-body)"/>
         <path d="M12 46 A38 36 0 0 1 88 46" fill="none" stroke="#14263f" stroke-opacity=".32" stroke-width="7" stroke-linecap="round" filter="url(#wd-blur)"/>
         <ellipse cx="50" cy="76" rx="31" ry="14" fill="url(#wd-caustic)" filter="url(#wd-blur)"/>
@@ -1317,7 +1366,9 @@ async function openLevels() {
         <ellipse cx="50" cy="51" rx="43" ry="41" fill="none" stroke="#0f1e33" stroke-opacity=".28" stroke-width=".8"/></svg>
         <span class="go" id="goWord">…</span><span class="n">${cur + 1}</span></button>
       <div class="lvltag" id="lvlTag">&nbsp;</div>
+      <div class="palette" role="group" aria-label="Pip's colour"><div class="pallbl">Pip's colour</div><div class="swatches" id="palRow"></div><div class="palhint">Grab paint drops on the way down to mix new colours</div></div>
     </div>`;
+  drawPalette();
   map.hidden = false; $('mapScroll').scrollTop = 0;
   $('bgPick').hidden = false; showBgMini(); $('bgPick').onclick = () => openBook(true);
   requestAnimationFrame(() => requestAnimationFrame(() => map.classList.add('in')));
@@ -1326,6 +1377,12 @@ async function openLevels() {
   const d = diffOf(cur); $('lvlTag').textContent = diffName(d); $('lvlTag').dataset.d = diffName(d).toLowerCase().replace(' ', '-');
   const b = $('startLvl'); b.disabled = false; $('goWord').textContent = 'Level';
   b.onclick = () => { ensureAudio(); loadLevel(cur); };
+}
+function drawPalette() {
+  const row = $('palRow'); if (!row) return;
+  row.innerHTML = palette.map((e, i) => `<button type="button" data-i="${i}" aria-label="${e.name}" aria-pressed="${i === pipTint}" title="${e.name}" style="background:${css(mixRGB(e.c))}"></button>`).join('');
+  row.querySelectorAll('button').forEach(b => b.onclick = () => { pipTint = +b.dataset.i; savePalette(); plip(820, .12, .06); drawPalette(); });
+  const t = $('dropTint'); if (t) t.setAttribute('fill', css(mixRGB((palette[pipTint] || palette[0]).c)));
 }
 // little beads of water scattered over the map glass, kept clear of the level drops
 function beadsSVG(w, h, pos) {
@@ -1374,8 +1431,8 @@ function drawSticker(g, s) {
   if (phase !== 'draw') { const rr = s.type === 'heart' ? 75 : s.type === 'cloud' ? 26 : 25; g.strokeStyle = 'rgba(255,255,255,.35)'; g.setLineDash([3, 4]); g.lineWidth = 1; g.beginPath(); g.arc(0, 0, rr, 0, 7); g.stroke(); g.setLineDash([]); }
   g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 6; g.shadowOffsetY = 2;
   g.fillStyle = '#fff'; g.beginPath(); g.arc(0, 0, 14, 0, 7); g.fill(); g.shadowColor = 'transparent';
-  g.font = '17px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(STICKERS[s.type].e, 0, 1);
-  g.textBaseline = 'alphabetic'; g.restore();
+  g.translate(-10, -10); g.scale(20 / 24, 20 / 24); for (const [d, f] of ICONS[s.type]) { g.fillStyle = f; g.fill(new Path2D(d)); }
+  g.restore();
 }
 // door panel, painted once
 const doorC = mk(W * K, H * K);
@@ -1533,10 +1590,9 @@ function frame(now) {
     ctx.drawImage(temp, 0, 0);
     // fog over everything, with a bright rim of pushed-aside mist along each streak, then the streaks cut out
     ffx.globalCompositeOperation = 'source-over'; ffx.clearRect(0, 0, fogFull.width, fogFull.height); ffx.imageSmoothingEnabled = true; ffx.drawImage(fog, 0, 0, fogFull.width, fogFull.height);
-    ffx.save(); ffx.shadowColor = `rgba(255,255,255,${.75 - .4 * env.tunnel})`; ffx.shadowBlur = 6 * K; ffx.shadowOffsetX = 10000; ffx.drawImage(pathMask, -10000, 0); ffx.restore();
+    ffx.save(); ffx.shadowColor = `rgba(255,255,255,${.75 * (1 - env.tunnel)})`; ffx.shadowBlur = 6 * K; ffx.shadowOffsetX = 10000; ffx.drawImage(pathMask, -10000, 0); ffx.restore();
     ffx.globalCompositeOperation = 'destination-out'; ffx.drawImage(pathMask, 0, 0); ffx.globalCompositeOperation = 'source-over';
     ctx.drawImage(fogFull, 0, 0);
-    if (env.tunnel > .01) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = env.tunnel; ctx.filter = 'blur(4px)'; ctx.drawImage(edgeC, 0, 0, cv.width, cv.height); ctx.drawImage(edgeC, 0, 0, cv.width, cv.height); ctx.restore(); }
     ctx.setTransform(K, 0, 0, K, 0, 0);
   }
   // glass: a soft reflection band and darker corners
@@ -1562,6 +1618,7 @@ function frame(now) {
   ctx.globalAlpha = 1;
   for (const s of placed) drawSticker(ctx, s);
   for (const sp of sparkles) if (!sp.got && (!sp.dark || env.tunnel > .02)) { const tw = 1 + .25 * Math.sin(now / 180 + sp.x); ctx.save(); if (sp.dark) ctx.globalAlpha = env.tunnel; ctx.translate(sp.x, sp.y); ctx.rotate(Math.sin(now / 700 + sp.y) * .25); ctx.scale(tw, tw); glow(ctx, 0, 0, 14, '255,215,90', .5); ctx.fillStyle = '#ffd75a'; ctx.beginPath(); for (let k = 0; k < 10; k++) { const a = k * Math.PI / 5 - Math.PI / 2, rr = k % 2 ? 3.6 : 8.5; ctx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); } ctx.fill(); ctx.restore(); }
+  if (mode === 'puzzle') for (const q of paints) if (!q.got) { const b = Math.sin(now / 300 + q.x) * 1.3; glow(ctx, q.x, q.y + b, 20, q.rgb.map(v => Math.round(v * 255)).join(','), .6); drawDrop(ctx, q.x, q.y + b, 6.8, q.k === 'w' ? [.96, .97, 1] : q.rgb, 0); }
   // droplets in the race
   for (const s of dots) drawDrop(ctx, s.x, s.y, radius(s.mass) * .62, s.rgb, 0);
   ripples.forEach(r => { r.t += dt; const k = r.t / .5; ctx.strokeStyle = css(r.rgb, Math.max(0, .6 - k * .6)); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(r.x, r.y, 4 + k * 18, 0, 7); ctx.stroke(); });
@@ -1592,8 +1649,8 @@ function frame(now) {
   const banner = (txt, y) => { ctx.font = '600 15px Fredoka, Figtree, sans-serif'; ctx.textAlign = 'center'; const tw = ctx.measureText(txt).width + 24; ctx.fillStyle = 'rgba(20,24,34,.6)'; ctx.beginPath(); ctx.roundRect(W / 2 + 12 - tw / 2, y - 16, tw, 24, 12); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.95)'; ctx.fillText(txt, W / 2 + 12, y + 1); };
   if (phase === 'pick') banner(twoP ? `Player ${turn + 1}: tap a drop to back` : 'Tap the drop you want to back', START_Y + 72);
   if (phase === 'plan' && !history.length && !drawing) banner(twoP ? `Player ${turn + 1}: drag to wipe a path` : mode === 'puzzle' ? 'Drag to wipe a path for Pip' : 'Drag below your drop to wipe a path', START_Y + 72);
-  if (phase === 'race' && mode === 'puzzle' && bumps.some(b => !b.done && raceT > b.t - 1.3)) banner('⚠ Bump ahead!', GY + GH * .45);
-  if (phase === 'race' && env.warn) banner(env.warn === 'tunnel' ? '⚠ Tunnel ahead' : '⚠ Bridge ahead: gusts!', GY + GH * .45);
+  if (phase === 'race' && mode === 'puzzle' && bumps.some(b => !b.done && raceT > b.t - 1.3)) banner('Bump ahead!', GY + GH * .45);
+  if (phase === 'race' && env.warn) banner(env.warn === 'tunnel' ? 'Tunnel ahead' : 'Bridge ahead: gusts!', GY + GH * .45);
   if (phase === 'count') { const n = Math.ceil(countdown); ctx.font = '600 64px Fredoka, Figtree, sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(255,255,255,.92)'; ctx.fillText(n > 3 ? '3' : n > 0 ? String(n) : 'Go!', W / 2, H * .45); }
   if (drawing && drawing.max) { const k = 1 - drawing.len / drawing.max; ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(drawing.x, drawing.y, 13, -Math.PI / 2, -Math.PI / 2 + k * Math.PI * 2); ctx.stroke(); }
   ctx.restore();
@@ -1609,7 +1666,7 @@ function start(data) {
   requestAnimationFrame(frame);
 }
 if (location.hash === '#test') window.__ws = {
-  levels: 20,
+  levels: 20, x(s) { return eval(s); },
   async gen(n) { const t0 = performance.now(); const L = await ensureLevel(n); return { n, name: L.name, d: +L.diff.toFixed(2), pick: genCache[n], ms: Math.round(performance.now() - t0), feats: L.hint }; },
   scene(i, o = 0) { buildLayers(STOPS[i]); const c = mk(W * K, H * K); paintView(c.getContext('2d'), { sky: o, far: o * 10, mid: o * 47, near: o * 225 }, TW, H * K); return c.toDataURL(); },
   info: n => ({ top: START_Y, fin: FIN, start: LEVELS[n].start, goal: LEVELS[n].goal, strokes: LEVELS[n].strokes, len: LEVELS[n].len, sparkles: LEVELS[n].sparkles }),
